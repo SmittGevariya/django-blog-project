@@ -14,6 +14,10 @@
             <div>
                 {% if user.is_authenticated %}
                 <p class='d-inline me-2 font-bold text-black'>Hello {{user.username}} !</p>
+                <form action="{% url 'logout'%}" method='POST' class='d-inline'>
+                    {% csrf_token %}
+                    <button type='submit' class='btn btn-danger'>Log Out</button>
+                </form>
                 {% else %}
                 <a href="{% url 'login'%}" class='btn btn-primary'>Log In</a>
                 <a href="{% url 'signup'%}" class='btn btn-info'>Sign Up</a>
