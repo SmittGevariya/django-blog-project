@@ -4,11 +4,18 @@ from .models import Post
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
+from django.db.models import Q
 # Create your views here.
 
 
 def post_list(request):
-    posts = Post.objects.all()
+    query = request.GET.get('q')
+    if query:
+        posts = Post.objects.filter(
+            Q(title__icontains=query) | Q(content__icontains=query)
+        ).order_by('-id')
+    else:
+        posts = Post.objects.all().order_by('-id')
     return render(request,'posts/post_list.html',{'posts':posts})
 
 def post_detail(request,pk):
