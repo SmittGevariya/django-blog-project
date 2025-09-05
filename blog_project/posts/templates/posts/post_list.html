@@ -1,14 +1,17 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-    <h2 class='mb-4'>All Posts</h2>
+    <div class='d-flex justify-content-between align-items-center mb-4'>
+        <h2>All Posts</h2>
+        <a href="{% url 'post_new' %}" class='btn btn-primary'>New Post</a>
+    </div>
     {% for post in posts %}
         <div clas='card mb-3'>
             <div class='card-body'>
                 <h3 class='card-title'>
-                    <a href="{% url 'post_detail' pk=post.pk %}">{{post.title}}</a>
+                    <a href="{% url 'post_detail' pk=post.pk %}" >{{post.title}}</a>
                 </h3>
-                <p class='card-text'>{{post.content}}</p>
+                <p class='card-text mt-3 mb-3'>{{post.content}}</p>
             </div>
         </div>
     {% endfor %}

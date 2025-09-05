@@ -1,4 +1,5 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
+from .forms import PostForm
 from .models import Post
 # Create your views here.
 
@@ -10,3 +11,12 @@ def post_detail(request,pk):
     post = get_object_or_404(Post,pk=pk)
     return render(request,'posts/post_detail.html',{'post':post})
 
+def post_new(request):
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            form=form.save()
+            return redirect('post_detail',pk=form.pk)
+    else:
+        form = PostForm()
+    return render(request,'posts/post_edit.html',{'form':form})
