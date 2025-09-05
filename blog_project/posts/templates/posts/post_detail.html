@@ -7,6 +7,7 @@
             <p class="card-text">{{ post.content }}</p>
         </div>
         <div class="card-footer">
+            <a href="{% url 'post_edit' pk=post.pk%}" class='btn btn-info'>Edit</a>
             <a href="{% url 'post_list' %}" class="btn btn-success">Back to Homepage</a>
         </div>
     </div>
