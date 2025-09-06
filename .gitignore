@@ -10,3 +10,9 @@ __pycache__/
 
 # Secrets file
 .env
+
+# Collected static files for deployment
+/staticfiles/
+
+# User-uploaded media files
+/media/
