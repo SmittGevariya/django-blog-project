@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.db.models import Q
+from django.core.paginator import Paginator
 # Create your views here.
 
 
@@ -16,7 +17,11 @@ def post_list(request):
         ).order_by('-id')
     else:
         posts = Post.objects.all().order_by('-id')
-    return render(request,'posts/post_list.html',{'posts':posts})
+
+    paginator = Paginator(posts,4)
+    page_number= request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request,'posts/post_list.html',{'page_obj':page_obj})
 
 def post_detail(request,pk):
     post = get_object_or_404(Post,pk=pk)
