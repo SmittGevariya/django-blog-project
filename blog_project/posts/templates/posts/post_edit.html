@@ -1,12 +1,32 @@
 {% extends 'layout.html' %}
 
-{% block content %}
-    <h2>new Post</h2>
+{% load widget_tweaks %}{% block content %}
+<div class="row justify-content-center mt-4">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-body">   
+
+          <form method="POST">
+            {% csrf_token %}
+
+            {% for field in form %}
+              <div class="mb-3">
+                {{ field.label_tag }}
+                {{ field|add_class:"form-control" }}
+                 {% if field.errors %}
+                  <div class="alert alert-danger mt-2">
+                    {{ field.errors|striptags }}
+                  </div>
+                {% endif %}
+              </div>
+            {% endfor %}
+
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a href="{% url 'post_list' %}" class="btn btn-secondary">Cancel</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
     
-    <form method='POST'>
-        {% csrf_token %}
-        {{form.as_p}}
-        <button class='btn btn-primary' type='submit'>Save</button>
-        <a href="{% url 'post_list'%}" class='btn btn-secondary'>Cancel</a>
-    </form>
 {% endblock  %}
