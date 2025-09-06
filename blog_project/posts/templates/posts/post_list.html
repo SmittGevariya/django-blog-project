@@ -10,6 +10,9 @@
     {% for post in posts %}
         <div clas='card mb-3'>
             <div class='card-body'>
+                {% if post.image %}
+                <img src="{{post.image.url}}"  class="img-fluid rounded mb-3" alt="{{post.title}}">
+                {% endif %}
                 <h3 class='card-title'>
                     <a href="{% url 'post_detail' pk=post.pk %}" >{{post.title}}</a>
                 </h3>

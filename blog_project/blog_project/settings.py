@@ -14,7 +14,7 @@ from decouple import config
 from pathlib import Path
 import os
 
-from django.conf.global_settings import LOGOUT_REDIRECT_URL
+from django.conf.global_settings import LOGOUT_REDIRECT_URL, MEDIA_URL
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -131,3 +131,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL='login'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL='/'
+
+MEDIA_URL='/media/'
+MEDIA_ROOT=BASE_DIR/'media'
