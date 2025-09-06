@@ -8,16 +8,38 @@
         {% endif %}
     </div>
     {% for post in posts %}
-        <div clas='card mb-3'>
-            <div class='card-body'>
-                {% if post.image %}
-                <img src="{{post.image.url}}"  class="img-fluid rounded mb-3" alt="{{post.title}}">
-                {% endif %}
-                <h3 class='card-title'>
-                    <a href="{% url 'post_detail' pk=post.pk %}" >{{post.title}}</a>
-                </h3>
-                <p class='card-text mt-3 mb-5'>{{post.content  | truncatewords:30}}</p>
+    <div class="card mb-4">
+
+        {% if post.image %}
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="{{ post.image.url }}" class=" card-img-top-list img-fluid rounded-start" alt="{{ post.title }}">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h3 class="card-title">
+                            <a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
+                        </h3>
+                        <p class="card-subtitle text-body-secondary mb-2">
+                            By {{ post.author.username }}
+                        </p>
+                        <p class="card-text">{{ post.content|truncatewords:30 }}</p>
+                    </div>
+                </div>
             </div>
-        </div>
-    {% endfor %}
+
+        {% else %}
+            <div class="card-body">
+                <h3 class="card-title">
+                    <a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
+                </h3>
+                <p class="card-subtitle text-body-secondary mb-2">
+                    By {{ post.author.username }}                
+		</p>
+                <p class="card-text">{{ post.content|truncatewords:30 }}</p>
+            </div>
+        {% endif %}
+
+    </div>
+{% endfor %}
 {% endblock  %}

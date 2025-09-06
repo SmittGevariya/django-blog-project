@@ -14,9 +14,14 @@ from decouple import config
 from pathlib import Path
 import os
 
-from django.conf.global_settings import LOGOUT_REDIRECT_URL, MEDIA_URL
+from django.conf.global_settings import LOGOUT_REDIRECT_URL, MEDIA_URL, STATICFILES_DIRS
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+STATICFILES_DIRS=[
+    BASE_DIR/'static'
+]
+STATIC_URL='static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
 # Quick-start development settings - unsuitable for production
