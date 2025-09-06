@@ -21,7 +21,7 @@
                             <a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
                         </h3>
                         <p class="card-subtitle text-body-secondary mb-2">
-                            By {{ post.author.username }}
+                            By {{ post.author.username }} on {{post.created_at|date:"F d, Y"}}
                         </p>
                         <p class="card-text">{{ post.content|truncatewords:30 }}</p>
                     </div>
@@ -34,7 +34,7 @@
                     <a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
                 </h3>
                 <p class="card-subtitle text-body-secondary mb-2">
-                    By {{ post.author.username }}                
+                    By {{ post.author.username }} on {{post.created_at|date:"F d, Y"}}               
 		</p>
                 <p class="card-text">{{ post.content|truncatewords:30 }}</p>
             </div>
