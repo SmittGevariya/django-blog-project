@@ -13,7 +13,7 @@
                 <h3 class='card-title'>
                     <a href="{% url 'post_detail' pk=post.pk %}" >{{post.title}}</a>
                 </h3>
-                <p class='card-text mt-3 mb-5'>{{post.content}}</p>
+                <p class='card-text mt-3 mb-5'>{{post.content  | truncatewords:30}}</p>
             </div>
         </div>
     {% endfor %}
